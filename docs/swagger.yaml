@@ -1,0 +1,52 @@
+basePath: /
+definitions:
+  controllers.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  models.Profile:
+    properties:
+      bio:
+        type: string
+      id:
+        type: integer
+      user_id:
+        type: integer
+    type: object
+  models.User:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      profile:
+        $ref: '#/definitions/models.Profile'
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: API to manage albums
+  title: Albums API
+  version: "1.0"
+paths:
+  /users:
+    get:
+      description: Get Users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controllers.ErrorResponse'
+      summary: Get Users
+      tags:
+      - Users
+swagger: "2.0"
