@@ -8,6 +8,7 @@ import (
 	"example.com/models"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
+	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
@@ -34,4 +35,14 @@ func InitDatabase() {
 	//run the migration
 	db.AutoMigrate(&models.User{}, &models.Profile{})
 	DB = db
+}
+
+func InitTestDB(dbCon string) *gorm.DB {
+	db, err := gorm.Open(sqlite.Open(dbCon), &gorm.Config{})
+	if err != nil {
+		log.Fatal("Failed to connect to database:", err)
+
+	}
+	db.AutoMigrate(&models.User{}, &models.Profile{})
+	return db
 }

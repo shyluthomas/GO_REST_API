@@ -3,7 +3,7 @@ package main
 import (
 	"example.com/database"
 	_ "example.com/docs" // replace with the actual package path
-	"example.com/router"
+	"example.com/routes"
 )
 
 // @title Albums API
@@ -14,6 +14,6 @@ import (
 
 func main() {
 	database.InitDatabase()
-	router.SetupRoutes()
+	routes.SetupRoutes()
 
 }
